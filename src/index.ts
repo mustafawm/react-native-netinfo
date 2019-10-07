@@ -92,7 +92,12 @@ export function addEventListener(
  *
  * @returns The connection state.
  */
-export function useNetInfo(): Types.NetInfoState {
+export function useNetInfo(
+  userConfig?: Partial<Types.NetInfoConfiguration>,
+): Types.NetInfoState {
+  if (userConfig) {
+    configure(userConfig);
+  }
   const [netInfo, setNetInfo] = useState<Types.NetInfoState>({
     type: Types.NetInfoStateType.unknown,
     isConnected: false,
